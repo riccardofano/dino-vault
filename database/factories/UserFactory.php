@@ -24,10 +24,11 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
+            'discord_id' => fake()->unique()->randomNumber(),
             'name' => fake()->name(),
+            'nickname' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'avatar' => fake()->imageUrl(),
             'remember_token' => Str::random(10),
         ];
     }
