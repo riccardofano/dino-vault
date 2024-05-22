@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout>
+    <x-slot:header>
+        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
+            {{ $user->name }}'s Dinos
+        </h2>
+    </x-slot:header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User profile</title>
-</head>
-
-<body>
-    <h1>{{ $user->name }}'s Dinos</h1>
-    <ul>
-        @foreach ($user->dinos as $dino)
-            <li>
-                <img src="{{ $dino->discord_url }}" alt="">
-                <p>{{ $dino->name }}</p>
-            </li>
+    <section class="grid grid-cols-auto-fit-200 gap-4 text-gray-800 dark:text-gray-200">
+        @foreach ($dinos as $dino)
+            <x-dino-card :$dino />
         @endforeach
-    </ul>
-</body>
 
-</html>
+        {{ $dinos->links() }}
+    </section>
+</x-app-layout>

@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         $users = User::factory(20)->create();
         $users->each(function ($user) {
-            Dino::factory(20)->create(['owner_id' => $user->discord_id]);
+            Dino::factory(100)->create(['owner_id' => $user->discord_id]);
         });
     }
 }

@@ -9,7 +9,8 @@ Route::view('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('auth');
 
 Route::get('/users/{user}', function (User $user) {
-    return view('user', ['user' => $user]);
+    $dinos = $user->dinos()->paginate(24);
+    return view('user', ['user' => $user, 'dinos' => $dinos]);
 });
 
 require __DIR__ . '/auth.php';
