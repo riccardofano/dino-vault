@@ -11,6 +11,10 @@
 <body>
     <nav>
         @auth
+            <form action="/logout" method="POST">
+                @csrf
+                <button type="submit">Log out</button>
+            </form>
             <img src="{{ Auth::user()->avatar }}" alt="">
         @else
             <a href="/login">Log in with Discord</a>
