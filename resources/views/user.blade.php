@@ -11,9 +11,7 @@
         <div class="divide-x divide-white/30 [&>*]:px-4">
             <x-nav-kind-link :$user kind="all">All</x-nav-kind-link>
             <x-nav-kind-link :$user kind="favourite">Favourite</x-nav-kind-link>
-            {{-- <x-nav-kind-link :$user kind="trash">Trash</x-nav-kind-link> --}}
-            {{-- FIXME: now it's so I stop clicking on it --}}
-            <span>Trash</span>
+            <x-nav-kind-link :$user kind="trash">Trash</x-nav-kind-link>
             <x-nav-kind-link :$user kind="coveted">Coveted</x-nav-kind-link>
             <x-nav-kind-link :$user kind="shunned">Shunned</x-nav-kind-link>
         </div>

@@ -23,6 +23,8 @@ class UserController extends Controller
             case 'favourite':
             case 'favorite':
                 return $user->favouriteDinos();
+            case 'trash':
+                return $user->trashDinos();
             case 'shunned':
             case 'disliked':
                 return $user->shunnedDinos();

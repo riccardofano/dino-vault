@@ -69,6 +69,12 @@ class User extends Authenticatable
             ->wherePivot('type', 'FAVOURITE');
     }
 
+    public function trashDinos(): HasMany
+    {
+        $favouriteDinoIds = $this->favouriteDinos()->pluck('dino_id');
+        return $this->dinos()->whereNotIn('id', $favouriteDinoIds);
+    }
+
     public function shunnedDinos(): BelongsToMany
     {
         return $this->belongsToMany(Dino::class, table: 'dino_transaction', parentKey: 'discord_id')
