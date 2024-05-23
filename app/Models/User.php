@@ -68,4 +68,32 @@ class User extends Authenticatable
         return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id')
             ->wherePivot('type', 'FAVOURITE');
     }
+
+    public function shunnedDinos(): BelongsToMany
+    {
+        return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id')
+            ->wherePivot('type', 'SHUN');
+    }
+
+    public function covetedDinos(): BelongsToMany
+    {
+        return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id')
+            ->wherePivot('type', 'COVET');
+    }
+
+    public function receivedDinos(): BelongsToMany
+    {
+        return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id')
+            ->wherePivot('type', 'GIFT')
+            ->using(DinoTransaction::class)
+            ->withPivot('gifter_id');
+    }
+
+    public function giftedDinos(): BelongsToMany
+    {
+        return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id', foreignPivotKey: 'gifter_id')
+            ->wherePivot('type', 'GIFT')
+            ->using(DinoTransaction::class)
+            ->withPivot('user_id');
+    }
 }

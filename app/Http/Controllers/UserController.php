@@ -12,8 +12,7 @@ class UserController extends Controller
 
     function show(Request $request, User $user)
     {
-        $dinos = $user->favouriteDinos();
-
+        $dinos = $user->dinos();
         return view('user', ['user' => $user, 'dinos' => $dinos->paginate(24)]);
     }
 }
