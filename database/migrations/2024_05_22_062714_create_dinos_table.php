@@ -28,7 +28,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('dino_transactions', function (Blueprint $table) {
+        Schema::create('dino_transaction', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users', 'discord_id');
             $table->foreignId('dino_id')->contrained('dinos');
