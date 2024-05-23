@@ -7,12 +7,33 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    const SORTS = ['worth', 'hotness'];
-    const FILTERS = ['favourite', 'trash', 'all'];
-
-    function show(Request $request, User $user)
+    function show(User $user, string $kind)
     {
-        $dinos = $user->dinos();
-        return view('user', ['user' => $user, 'dinos' => $dinos->paginate(24)]);
+        $dinos = UserController::getDinoKind(strtolower($kind), $user);
+
+        return view('user', [
+            'kind' => $kind,
+            'user' => $user,
+            'dinos' => $dinos->paginate(24)
+        ]);
+    }
+
+    static function getDinoKind(string $kind, User $user)
+    {
+        switch ($kind) {
+            case 'favourite':
+            case 'favorite':
+                return $user->favouriteDinos();
+            case 'shunned':
+            case 'disliked':
+                return $user->shunnedDinos();
+            case 'coveted':
+            case 'liked':
+                return $user->covetedDinos();
+            case 'all':
+                return $user->dinos();
+            default:
+                return abort(404);
+        }
     }
 }

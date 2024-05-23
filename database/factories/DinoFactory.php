@@ -21,7 +21,7 @@ class DinoFactory extends Factory
             'owner_id' => User::factory(),
             'name' => fake()->unique()->name(),
             'filename' => fake()->filePath(),
-            'discord_url' => fake()->imageUrl(),
+            'discord_url' => fake()->imageUrl(width: 112, height: 112),
             'worth' => fake()->numberBetween(1, 10),
             'hotness' => fake()->numberBetween(-10, 10),
             'body' => fake()->word(),

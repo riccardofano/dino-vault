@@ -11,7 +11,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body class="font-sans text-gray-800 antialiased dark:text-gray-200">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
         @if (isset($header))
             <header class="bg-white shadow dark:bg-gray-800">

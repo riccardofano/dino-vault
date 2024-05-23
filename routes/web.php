@@ -8,6 +8,7 @@ Route::view('/', 'welcome');
 Route::view('/dashboard', 'dashboard')->middleware(['auth', 'verified'])->name('dashboard');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('auth');
 
-Route::get('/users/{user}', [UserController::class, 'show']);
+// TODO: use {user:discord_id} to identify user
+Route::get('/users/{user}/{kind}', [UserController::class, 'show']);
 
 require __DIR__ . '/auth.php';
