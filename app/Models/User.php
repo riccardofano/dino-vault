@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,21 @@ class User extends Authenticatable
     public function dinos(): HasMany
     {
         return $this->hasMany(Dino::class, 'owner_id', 'discord_id');
+    }
+
+    public function dinoTransactions(): HasMany
+    {
+        return $this->hasMany(DinoTransaction::class, 'user_id', 'discord_id');
+    }
+
+    public function giftedDinoTransactions(): HasMany
+    {
+        return $this->hasMany(DinoTransaction::class, 'gifter_id', 'discord_id');
+    }
+
+    public function favouriteDinos(): BelongsToMany
+    {
+        return $this->belongsToMany(Dino::class, table: 'dino_transactions', parentKey: 'discord_id')
+            ->wherePivot('type', 'FAVOURITE');
     }
 }

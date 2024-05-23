@@ -19,14 +19,14 @@ class DinoFactory extends Factory
     {
         return [
             'owner_id' => User::factory(),
-            'name' => fake()->name,
+            'name' => fake()->unique()->name(),
             'filename' => fake()->filePath(),
             'discord_url' => fake()->imageUrl(),
             'worth' => fake()->numberBetween(1, 10),
             'hotness' => fake()->numberBetween(-10, 10),
-            'body' => fake()->word,
-            'mouth' => fake()->word,
-            'eyes' => fake()->word,
+            'body' => fake()->word(),
+            'mouth' => fake()->word(),
+            'eyes' => fake()->word(),
         ];
     }
 }

@@ -18,11 +18,17 @@ class DinoTransactionFactory extends Factory
      */
     public function definition(): array
     {
+        $user = User::inRandomOrder()->first();
+        $dino = Dino::inRandomOrder()->first();
+
+        $type = $this->faker->randomElement(['GIFT', 'COVET', 'SHUN', 'FAVOURITE']);
+        $gifter = $type === 'GIFT' ? User::inRandomOrder()->first() : null;
+
         return [
-            'user_id' => User::factory()->create()->discord_id,
-            'dino_id' => Dino::factory(),
-            'gifter_id' => null,
-            'type' => ''
+            'user_id' => $user->discord_id,
+            'dino_id' => $dino->id,
+            'gifter_id' => $gifter?->discord_id,
+            'type' => $type
         ];
     }
 }
