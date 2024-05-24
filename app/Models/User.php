@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -63,16 +64,35 @@ class User extends Authenticatable
         return $this->hasMany(DinoTransaction::class, 'gifter_id', 'discord_id');
     }
 
-    public function favouriteDinos(): BelongsToMany
+    public function favouritedDinos(): BelongsToMany
     {
         return $this->belongsToMany(Dino::class, table: 'dino_transaction', parentKey: 'discord_id')
             ->wherePivot('type', 'FAVOURITE');
     }
 
-    public function trashDinos(): HasMany
+    public function favouriteOwnedDinos()
     {
-        $favouriteDinoIds = $this->favouriteDinos()->pluck('dino_id');
-        return $this->dinos()->whereNotIn('id', $favouriteDinoIds);
+        return DB::table('dinos')
+            ->join('dino_transaction', function ($join) {
+                $join
+                    ->on('dinos.id', '=', 'dino_id')
+                    ->on('type', '=', 'FAVOURITE');
+            })
+            ->where('owner_id', '=', $this->discord_id);
+    }
+
+    // NOTE: named for consistency,
+    // it doesn't make much list all the dinos a user has not favourited
+    public function trashOwnedDinos()
+    {
+        return DB::table('dinos')
+            ->leftJoin('dino_transaction', function ($join) {
+                $join
+                    ->on('dinos.id', '=', 'dino_id')
+                    ->on('type', '=', 'FAVOURITE');
+            })
+            ->where('owner_id', '=', $this->discord_id)
+            ->whereNull('dino_id');
     }
 
     public function shunnedDinos(): BelongsToMany

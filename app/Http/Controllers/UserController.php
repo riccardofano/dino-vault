@@ -20,19 +20,22 @@ class UserController extends Controller
     static function getDinoKind(string $kind, User $user)
     {
         switch ($kind) {
+            case 'all':
+                return $user->dinos();
             case 'favourite':
             case 'favorite':
-                return $user->favouriteDinos();
+                return $user->favouriteOwnedDinos();
             case 'trash':
-                return $user->trashDinos();
+                return $user->trashOwnedDinos();
+            case 'favourited':
+            case 'favorited':
+                return $user->favouritedDinos();
             case 'shunned':
             case 'disliked':
                 return $user->shunnedDinos();
             case 'coveted':
             case 'liked':
                 return $user->covetedDinos();
-            case 'all':
-                return $user->dinos();
             default:
                 return abort(404);
         }
