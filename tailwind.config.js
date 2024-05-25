@@ -15,6 +15,13 @@ export default {
                 "auto-fit-200": "repeat(auto-fit, minmax(200px, 1fr))",
             },
         },
+        variants: {
+            rendering: {
+                auto: { imageRendering: "auto" },
+                "crisp-edges": { imageRendering: "crisp-edges" },
+                pixelated: { imageRendering: "pixelated" },
+            },
+        },
     },
 
     plugins: [forms],

@@ -1,3 +1,3 @@
 @props(['filename'])
 
-<img class="absolute inset-0" src="{{ Vite::asset('resources/assets/fragments/' . $filename) }}" alt="">
+<img class="absolute h-full w-full" src="{{ Vite::asset('resources/assets/fragments/' . $filename) }}" alt="">
