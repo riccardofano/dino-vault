@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Dino;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,9 +25,9 @@ class DinoFactory extends Factory
             'discord_url' => fake()->imageUrl(width: 112, height: 112),
             'worth' => fake()->numberBetween(1, 10),
             'hotness' => fake()->numberBetween(-10, 10),
-            'body' => fake()->word(),
-            'mouth' => fake()->word(),
-            'eyes' => fake()->word(),
+            'body' => fake()->randomElement(Dino::$bodyFragments),
+            'mouth' => fake()->randomElement(Dino::$mouthFragments),
+            'eyes' => fake()->randomElement(Dino::$eyesFragments),
         ];
     }
 }

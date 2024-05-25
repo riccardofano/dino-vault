@@ -12,7 +12,7 @@
             <x-nav-kind-link :$user kind="all">All</x-nav-kind-link>
 
             <div class="divide-x divide-white/30 [&>*]:px-4">
-                <x-nav-kind-link :$user kind="favourite">Your Favourite</x-nav-kind-link>
+                <x-nav-kind-link :$user kind="favourite">Your Favourites</x-nav-kind-link>
                 <x-nav-kind-link :$user kind="trash">Your Trash</x-nav-kind-link>
             </div>
 
@@ -24,7 +24,6 @@
         </div>
     </nav>
 
-
     <section>
         <div class="grid grid-cols-4 gap-8 text-gray-800 dark:text-gray-200">
             @foreach ($dinos as $dino)
@@ -33,7 +32,6 @@
         </div>
 
         <div class="mt-4">
-
             {{ $dinos->links() }}
         </div>
     </section>

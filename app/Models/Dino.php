@@ -11,6 +11,11 @@ class Dino extends Model
 {
     use HasFactory;
 
+    static $fragments = [];
+    static $bodyFragments = [];
+    static $mouthFragments = [];
+    static $eyesFragments = [];
+
     // Relationship with User
     public function owner(): BelongsTo
     {
