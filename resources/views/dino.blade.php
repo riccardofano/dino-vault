@@ -5,6 +5,7 @@
         </h2>
     </x-slot:header>
 
+
     <section>
         <div class="mx-auto max-w-max rounded-lg bg-white/10 p-8 text-center">
             <div class="rendering-crisp-edges relative mx-auto h-56 w-56">
@@ -55,5 +56,7 @@
                 <button class="rounded-md bg-gray-500 px-4 py-2 text-lg">Favourite</button>
             </form>
         </div>
+
+        {{ session('message') }}
     </section>
 </x-app-layout>

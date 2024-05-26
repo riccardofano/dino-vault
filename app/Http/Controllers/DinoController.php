@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dino;
 use App\Models\DinoTransaction;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DinoController extends Controller
 {
@@ -37,11 +38,13 @@ class DinoController extends Controller
 
         if (!$transaction->isEmpty()) {
             DinoTransaction::destroy($transaction);
+            Session::flash('message', 'The Dino has been removed from your favourites');
         } else {
             $user->dinoTransactions()->create([
                 'dino_id' => $dino,
                 'type' => 'FAVOURITE'
             ]);
+            Session::flash('message', 'The Dino has been added to your favourites');
         }
 
         return redirect('/dinos/' . $dino);
@@ -64,6 +67,7 @@ class DinoController extends Controller
 
         if ($transaction) {
             if ($transaction->type === $transactionType) {
+                Session::flash('message', 'You already ' . strtolower($transactionType) . 'ed this Dino.');
                 return;
             }
 
@@ -74,5 +78,7 @@ class DinoController extends Controller
             'dino_id' => $dino,
             'type' => $transactionType
         ]);
+
+        Session::flash('message', 'Dino has been ' . strtolower($transactionType) . 'ed.');
     }
 }
