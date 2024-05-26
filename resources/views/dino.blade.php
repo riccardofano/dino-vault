@@ -43,12 +43,15 @@
 
         <div class="mx-auto mt-8 flex max-w-max items-center gap-8">
             <form action="/dinos/{{ $dino->id }}/covet" method="post">
+                @csrf
                 <button class="rounded-md bg-green-600 px-4 py-2 text-lg">Covet</button>
             </form>
             <form action="/dinos/{{ $dino->id }}/shun" method="post">
+                @csrf
                 <button class="rounded-md bg-red-600 px-4 py-2 text-lg">Shun</button>
             </form>
             <form action="/dinos/{{ $dino->id }}/favourite" method="post">
+                @csrf
                 <button class="rounded-md bg-gray-500 px-4 py-2 text-lg">Favourite</button>
             </form>
         </div>
