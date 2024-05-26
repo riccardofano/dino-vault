@@ -59,10 +59,15 @@ class DinoController extends Controller
                     ->where('type', '=', 'COVET')
                     ->orWhere('type', '=', 'SHUN');
             })
-            ->pluck('dino_transaction.id');
+            ->select('id', 'type')
+            ->first();
 
-        if (!$transaction->isEmpty()) {
-            DinoTransaction::destroy($transaction);
+        if ($transaction) {
+            if ($transaction->type === $transactionType) {
+                return;
+            }
+
+            DinoTransaction::destroy($transaction->id);
         }
 
         $user->dinoTransactions()->create([
