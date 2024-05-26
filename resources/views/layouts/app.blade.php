@@ -15,7 +15,7 @@
     <header class="bg-white px-8 py-4 shadow dark:bg-gray-800">
         <div class="mx-auto flex max-w-7xl items-center justify-between">
             <a class="hover:underline" href="/">
-                <h1 class="text-xl font-bold">Banana Dino Vault</h1>
+                <div class="text-xl font-bold">Banana Dino Vault</div>
             </a>
 
             <nav class="flex items-center gap-x-8">
@@ -30,7 +30,7 @@
                             src="{{ Auth::user()->avatar }}" alt="">
                     </a>
                 @else
-                    <a href="/login">Log in with Discord</a>
+                    <a class="hover:underline" href="/login">Log in with Discord</a>
                 @endauth
             </nav>
         </div>
