@@ -1,11 +1,4 @@
 <x-app-layout>
-    <x-slot:header>
-        <h2 class="text-xl font-semibold leading-tight"">
-            {{ $dino->name }}
-        </h2>
-    </x-slot:header>
-
-
     <section>
         <div class="mx-auto max-w-max rounded-lg bg-white/10 p-8 text-center">
             <div class="rendering-crisp-edges relative mx-auto h-56 w-56">

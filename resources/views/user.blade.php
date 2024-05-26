@@ -1,19 +1,15 @@
 <x-app-layout>
-    <x-slot:header>
+    <nav class="my-4 flex justify-between">
         <h2 class="text-xl font-semibold leading-tight"">
             {{ $user->name }}'s Dinos
         </h2>
-    </x-slot:header>
-
-    <nav class="my-4 flex justify-between">
-        <h2 class="text-lg font-bold">{{ ucfirst($kind) }} Dinos</h2>
 
         <div class="flex gap-10">
             <x-nav-kind-link :$user kind="all">All</x-nav-kind-link>
 
             <div class="divide-x divide-white/30 [&>*]:px-4">
-                <x-nav-kind-link :$user kind="favourite">Your Favourites</x-nav-kind-link>
-                <x-nav-kind-link :$user kind="trash">Your Trash</x-nav-kind-link>
+                <x-nav-kind-link :$user kind="favourite">Owned Favourites</x-nav-kind-link>
+                <x-nav-kind-link :$user kind="trash">Owned Trash</x-nav-kind-link>
             </div>
 
             <div class="divide-x divide-white/30 [&>*]:px-4">
