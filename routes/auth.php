@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +27,7 @@ Route::get('/auth/callback', function () {
 
     Auth::login($user, true);
 
-    return redirect('/');
+    return redirect('/users/' . $user->id . '/all');
 });
 
 Route::post('/logout', function () {

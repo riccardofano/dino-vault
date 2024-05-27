@@ -17,7 +17,6 @@ Route::get('/users/{user}/', function ($user) {
 Route::get('/users/{user}/{kind}', [UserController::class, 'show']);
 
 Route::get('/dinos/{dino}', [DinoController::class, 'show']);
-
 Route::middleware('auth')->group(function () {
     Route::post('/dinos/{dino}/covet', [DinoController::class, 'covet']);
     Route::post('/dinos/{dino}/shun', [DinoController::class, 'shun']);
